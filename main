@@ -20,7 +20,7 @@
 	function removeElementSetCookie()
 		{
 		    removeElement(); 
-			setCookie("noticedandclickedaway",1,5);
+			setCookie("noticedandclickedaway",1,5); // 5 is the number of days the banner wil not be shown again
 		}
 		
 	noticedandclickedaway = getCookie("noticedandclickedaway"); // already clicked the message awar OR wrong month ?
