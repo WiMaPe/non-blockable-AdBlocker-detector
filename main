@@ -9,7 +9,7 @@
 	// or
 	var idname = Math.round(new Date().getTime() / 1000); // a timer
 
-	document.getElementById("adblocker").setAttribute("id", idname);
+	document.getElementById("adblocker").setAttribute("id", idname); // see the contents of file *message banner*
 	
 	function removeElement()
 		{
