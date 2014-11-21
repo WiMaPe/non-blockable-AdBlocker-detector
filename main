@@ -1,43 +1,66 @@
 <script> // Most hated script of the internet ?
 	
+	// getting the month of the current day
+	//
 	var adblockerdate = new Date();	var adblockermonth = adblockerdate.getMonth() + 1;
 		
-	// The months we ware giving a message in the browser
+	// The months we are giving a message in the browser. Not every month, we do NOT want to annoy our visitors
+	//
 	adblockerthismonth = ( adblockermonth == 2 || adblockermonth == 4 || adblockermonth == 6 || adblockermonth == 8 || adblockermonth == 10 || adblockermonth == 12) ? true : false ;
-		
+	
+	// choosing a method to make AdBlock not be able to block this div, as it changes names every page refresh
+	// more methods can be applied, to keep this script simple, two are given
+	//
 	// var idname = Math.floor((Math.random() * 1000000) + 1); // a random number
 	// or
 	var idname = Math.round(new Date().getTime() / 1000); // a timer
 
-	document.getElementById("adblocker").setAttribute("id", idname); // see the contents of file *message banner*
+	// we are renaming the <div id="adblocker"> in something different, so adblocker gets presented a different id every time
+	//
+	document.getElementById("adblocker").setAttribute("id", idname); // see also the contents of file *message banner*
 	
+	// we do not want to show this message every month, and want to give our visitor the possibility
+	// to click the message away.
+	// this code makes the (previous called) div "adblocker" invissible and empty of text
+	//
 	function removeElement()
 		{
 		    document.getElementById(idname).style.visibility = "hidden" ;
 		    document.getElementById(idname).style.display="none";
 		}
-
+	
+	// in case the visitor clicked the exit button of the message banner, we set a cookie so the banner is not
+	// shown again.
+	// of course we first make the banner go away by calling the previous function removeElement()
+	// then we write a cookie
+	//
 	function removeElementSetCookie()
 		{
 		    removeElement(); 
 			setCookie("noticedandclickedaway",1,5); // 5 is the number of days the banner wil not be shown again
 		}
-		
+	
+	// setting a cookie is nice, but you have to do something with it, like, reading...
+	//
 	noticedandclickedaway = getCookie("noticedandclickedaway"); // already clicked the message awar OR wrong month ?
 
-	if (noticedandclickedaway ==  "1" || adblockerthismonth == false ) {
-		    // The notice banner is already clicked away, so does not have to be showed again
-			// a cookie does not have to be set, it was already there or it was not the right month for it
-		    removeElement();
+	// here is the situation checked if the cookie was alread existing, OR it is just the wrong month of the year anyway
+	//
+	if (noticedandclickedaway ==  "1" || adblockerthismonth == false ) 
+		{
+		removeElement();
 		}
-		
-	if (document.getElementById("tester") != undefined) {
-		    // AdBlocker is not active, so no need to show a blue banner, even when there is not text in it.
-		    removeElement();
+	// obvious we have to check if AdBlocker loaded our advertisment, here called in div id="tester"
+	//
+	if (document.getElementById("tester") != undefined) 
+		{
+		// AdBlocker is not active, so no need to show a blue banner, even when there is no text in it.
+		removeElement();
 		}
 		else
 		{
-		    document.getElementById(idname).innerHTML="<h4 style=\"color: green;\">Well hello there!</h4><br>We noticed you most likely are using some kind of ad blocking plugin. We understand that although we find it a pitty you enabled it on our site too. <br><strong>Even when you never click</strong> on advertisments, you still can help by whitelisting {DOMAIN or WEB NAME)! Read here <a href=\"{LINK TO EXPLAINATION PAGE}" style=\"color: green; text-decoration: underline; font: italic bold;\">our motivation</a> why even whitlisting would help us <strong>or</strong> what other choices there are to help us en keep your browsing free of advertisemens <strong>&</strong> fast <span style=\"font-size: x-small\">(AdBlocker slows down your browser)</span> for this website.<br><br><input class=\"box\" type=\"button\" onclick=\"removeElementSetCookie()\" value=\"Remove this banner\" /><span id=\"daysgone\" style=\"font-size: xx-small\"> (5 days)</span>";
+		// yup, adblocker was active, got news for you....
+	    	document.getElementById(idname).innerHTML="<h4 style=\"color: green;\">Well hello there!</h4><br>We noticed you most likely are using some kind of ad blocking plugin. We understand that although we find it a pitty you enabled it on our site too. <br><strong>Even when you never click</strong> on advertisments, you still can help by whitelisting {DOMAIN or WEB NAME)! Read here <a href=\"{LINK TO EXPLAINATION PAGE}" style=\"color: green; text-decoration: underline; font: italic bold;\">our motivation</a> why even whitlisting would help us <strong>or</strong> what other choices there are to help us en keep your browsing free of advertisemens <strong>&</strong> fast <span style=\"font-size: x-small\">(AdBlocker slows down your browser)</span> for this website.<br><br><input class=\"box\" type=\"button\" onclick=\"removeElementSetCookie()\" value=\"Remove this banner\" /><span id=\"daysgone\" style=\"font-size: xx-small\"> (5 days)</span>";
 		}
 		// end of internet most hated script, made by WiMaPe, programming since 1981
-		</script> 
+</script> 
