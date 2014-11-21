@@ -1,2 +1,2 @@
 // place this between the <head> and </head> of the html file
-<script type="text/javascript" src="/forum/advertisement.js"></script>
+<script type="text/javascript" src="../advertisement.js"></script>
