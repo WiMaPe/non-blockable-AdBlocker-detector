@@ -1,36 +1,37 @@
-		<script> // Most hated script of the internet ?
+<script> // Most hated script of the internet ?
 	
-		var adblockerdate = new Date();	var adblockermonth = adblockerdate.getMonth() + 1;
+	var adblockerdate = new Date();	var adblockermonth = adblockerdate.getMonth() + 1;
 		
-		// The months we ware giving a message in the browser
-		adblockerthismonth = ( adblockermonth == 2 || adblockermonth == 4 || adblockermonth == 6 || adblockermonth == 8 || adblockermonth == 10 || adblockermonth == 12) ? true : false ;
+	// The months we ware giving a message in the browser
+	adblockerthismonth = ( adblockermonth == 2 || adblockermonth == 4 || adblockermonth == 6 || adblockermonth == 8 || adblockermonth == 10 || adblockermonth == 12) ? true : false ;
 		
-		// var idname = Math.floor((Math.random() * 1000000) + 1); // a random number
-		// or
-		var idname = Math.round(new Date().getTime() / 1000); // a timer
+	// var idname = Math.floor((Math.random() * 1000000) + 1); // a random number
+	// or
+	var idname = Math.round(new Date().getTime() / 1000); // a timer
 
-		document.getElementById("adblocker").setAttribute("id", idname);
-		
-		function removeElement()
+	document.getElementById("adblocker").setAttribute("id", idname);
+	
+	function removeElement()
 		{
 		    document.getElementById(idname).style.visibility = "hidden" ;
 		    document.getElementById(idname).style.display="none";
 		}
 
-		function removeElementSetCookie()
+	function removeElementSetCookie()
 		{
 		    removeElement(); 
 			setCookie("noticedandclickedaway",1,5);
 		}
 		
-		noticedandclickedaway = getCookie("noticedandclickedaway"); // already clicked the message awar OR wrong month ?
-		if (noticedandclickedaway ==  "1" || adblockerthismonth == false ) {
+	noticedandclickedaway = getCookie("noticedandclickedaway"); // already clicked the message awar OR wrong month ?
+
+	if (noticedandclickedaway ==  "1" || adblockerthismonth == false ) {
 		    // The notice banner is already clicked away, so does not have to be showed again
 			// a cookie does not have to be set, it was already there or it was not the right month for it
 		    removeElement();
 		}
 		
-		if (document.getElementById("tester") != undefined) {
+	if (document.getElementById("tester") != undefined) {
 		    // AdBlocker is not active, so no need to show a blue banner, even when there is not text in it.
 		    removeElement();
 		}
